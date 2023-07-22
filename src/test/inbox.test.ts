@@ -1,4 +1,4 @@
-//import assert from 'assert';
+import assert from 'assert';
 import ganache from 'ganache';
 import { Contract, ContractAbi, Web3 } from 'web3';
 import { abi, byteCode } from '../compile'; 
@@ -16,6 +16,6 @@ beforeEach(async () => {
 
 describe('Inbox', () => {
     it('deploys a contract', () => {
-        console.log(contract);
+        assert.ok(contract.options.address)
     } )
 });
