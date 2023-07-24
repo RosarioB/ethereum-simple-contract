@@ -15,19 +15,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const assert_1 = __importDefault(require("assert"));
 const ganache_1 = __importDefault(require("ganache"));
 const web3_1 = require("web3");
-const compile_1 = require("../compile");
+const compile_js_1 = require("../compile.js");
 const web3 = new web3_1.Web3(ganache_1.default.provider());
 let accounts;
 let contract;
+const INITAL_STRING = 'Hi There!';
 beforeEach(() => __awaiter(void 0, void 0, void 0, function* () {
     accounts = yield web3.eth.getAccounts();
-    contract = yield new web3.eth.Contract(JSON.parse(compile_1.abi))
-        .deploy({ data: compile_1.byteCode, arguments: ['My String'] })
+    contract = yield new web3.eth.Contract(JSON.parse(compile_js_1.abi))
+        .deploy({ data: compile_js_1.byteCode, arguments: [INITAL_STRING] })
         .send({ from: accounts[0], gas: '1000000' });
 }));
 describe('Inbox', () => {
     it('deploys a contract', () => {
         assert_1.default.ok(contract.options.address);
     });
+    it('has a default message', () => __awaiter(void 0, void 0, void 0, function* () {
+        const message = yield contract.methods.message().call();
+        assert_1.default.strictEqual(message, INITAL_STRING);
+    }));
+    it('can change the message', () => __awaiter(void 0, void 0, void 0, function* () {
+        const messageStr = 'New message';
+        yield contract.methods.setMessage(messageStr).send({ from: accounts[0] });
+        const message = yield contract.methods.message().call();
+        assert_1.default.strictEqual(message, messageStr);
+    }));
 });
 //# sourceMappingURL=inbox.test.js.map
