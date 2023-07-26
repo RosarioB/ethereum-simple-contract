@@ -1,5 +1,5 @@
 /.vscode
 /node_modules
-/files
-/dist
+/files/*
+/dist/*
 /src/test/colors.ts

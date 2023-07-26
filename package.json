@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "tsc && mocha dist/test/**/*.js",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "deploy": "tsc && node dist/deploy.js"
   },
   "author": "",
   "license": "ISC",
