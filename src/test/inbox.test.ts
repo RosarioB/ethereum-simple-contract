@@ -3,6 +3,7 @@ import ganache from 'ganache';
 import { Contract, ContractAbi, Web3 } from 'web3';
 import { abi, byteCode } from '../compile.js'; 
 
+
 const web3: Web3 = new Web3(ganache.provider());
 let accounts: string[];
 let contract: Contract<ContractAbi>;

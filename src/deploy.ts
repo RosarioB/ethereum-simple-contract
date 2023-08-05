@@ -1,9 +1,9 @@
 import HDWalletProvider from '@truffle/hdwallet-provider';
 import { Contract, ContractAbi, Web3 } from 'web3';
-import { abi, byteCode } from './compile'; 
-import { readSeedFromCsv } from './seed';
-import { apiKey } from './properties';
-import { isStringValid } from './utils';
+import { abi, byteCode } from './compile.js'; 
+import { readSeedFromCsv } from './seed.js';
+import { apiKey } from './properties.js';
+import { isStringValid } from './utils.js';
 
 const seed: string =  readSeedFromCsv();
 
