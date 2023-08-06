@@ -1,4 +1,4 @@
 /node_modules
-/files/*
 /dist
 /src/test/colors.ts
+/my_files
