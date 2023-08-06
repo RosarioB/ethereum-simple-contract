@@ -9,10 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import HDWalletProvider from '@truffle/hdwallet-provider';
 import { Web3 } from 'web3';
-import { abi, byteCode } from './compile.js';
+import { compiledContract } from './compile.js';
 import { readSeedFromCsv } from './seed.js';
 import { apiKey } from './properties.js';
 import { isStringValid } from './utils.js';
+const { abi, evm } = compiledContract;
 const seed = readSeedFromCsv();
 if (!isStringValid(apiKey)) {
     throw new Error('Apikey is not valid');
@@ -25,8 +26,8 @@ const web3 = new Web3(provider);
 const deploy = () => __awaiter(void 0, void 0, void 0, function* () {
     const accounts = yield web3.eth.getAccounts();
     console.log('Attempting to deploy from account', accounts[0]);
-    const result = yield new web3.eth.Contract(JSON.parse(abi))
-        .deploy({ data: byteCode, arguments: ['Hi there!'] })
+    const result = yield new web3.eth.Contract(abi)
+        .deploy({ data: evm.bytecode.object, arguments: ['Hi there!'] })
         .send({ gas: '1000000', from: accounts[0] });
     console.log('Contract deployed to', result.options.address);
     provider.engine.stop();

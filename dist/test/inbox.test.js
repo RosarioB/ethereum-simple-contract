@@ -10,15 +10,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import assert from 'assert';
 import ganache from 'ganache';
 import { Web3 } from 'web3';
-import { abi, byteCode } from '../compile.js';
+import { compiledContract } from '../compile.js';
+const { abi, evm } = compiledContract;
 const web3 = new Web3(ganache.provider());
 let accounts;
 let contract;
 const INITAL_STRING = 'Hi There!';
 beforeEach(() => __awaiter(void 0, void 0, void 0, function* () {
     accounts = yield web3.eth.getAccounts();
-    contract = yield new web3.eth.Contract(JSON.parse(abi))
-        .deploy({ data: byteCode, arguments: [INITAL_STRING] })
+    contract = yield new web3.eth.Contract(abi)
+        .deploy({ data: evm.bytecode.object, arguments: [INITAL_STRING] })
         .send({ from: accounts[0], gas: '1000000' });
 }));
 describe('Inbox', () => {

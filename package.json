@@ -15,14 +15,14 @@
     "@truffle/hdwallet-provider": "^2.1.13",
     "@types/properties-reader": "^2.1.1",
     "csv-parse": "^5.4.0",
-    "ganache": "^7.8.0",
+    "ganache": "^7.9.0",
     "mocha": "^10.2.0",
     "properties-reader": "^2.2.0",
-    "web3": "^4.0.2"
+    "web3": "^4.0.3"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
-    "solc": "^0.4.17",
+    "solc": "^0.8.21",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }
