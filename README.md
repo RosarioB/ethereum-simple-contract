@@ -32,6 +32,9 @@ To run the tests on the contract run `npm run test`.
 
 To deploy the contract run `npm run deploy`.
 
+## Verify the deployment
+To verify the correct deployment of the contract to the Sepolia network after you have executed `npm run deploy` you can connect to the [Sepolia Etherscan website](https://sepolia.etherscan.io/) and search the contract address printed to the console by the script `deploy.ts`. 
+
 ## Warning
 Be careful with your seed phrase: if you have some real Ether on your Ethereum account on the main Ethereum network and someone gets the seed phrase you can lose your money. I suggest you to use a different Ethereum account only to work with the Sepolia network.
 To get the Ether on the Sepolia network you can use a faucet like [this](https://sepolia-faucet.pk910.de/#/).
