@@ -2,11 +2,12 @@ import HDWalletProvider from '@truffle/hdwallet-provider';
 import { Contract, ContractAbi, Web3 } from 'web3';
 import { compiledContract } from './compile.js'; 
 import { readSeedFromCsv } from './seed.js';
-import { apiKey } from './properties.js';
+import 'dotenv/config'
 import { isStringValid } from './utils.js';
 
 const { abi, evm } = compiledContract;
 const seed: string =  readSeedFromCsv();
+const apiKey: string = process.env.API_KEY ?? '';
 
 if(!isStringValid(apiKey)){
     throw new Error('Apikey is not valid')
