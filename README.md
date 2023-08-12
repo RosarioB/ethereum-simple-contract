@@ -9,12 +9,11 @@ In the folder ***src*** we can find:
 * the folder ***test*** which contains the file ***inbox.test.ts*** used to test the contract.
 * the file ***compile.ts*** which is used to compile the contract by means of the  ***solc*** library.
 * the file ***deploy.ts*** which is used to deploy the contract on the Ethereum blockchain.
-* the file ***properties.ts*** which is used to read the property api.key from the file application.properties.
 * the file ***seed.ts*** which is used to read the seed phrase from the file seed.csv.
 
-In the folder ***files*** we finde two files:
-* ***application.properties*** the property ***api.key*** contains the link to the API services which allows you to deploy the contract to the Ethereum network. I have used the Infura API key for the Sepolia network. An example of an Infura API URL is `https://sepolia.infura.io/v3/############################`
-*  ***seed.csv*** contains the 12 words of your Ethereum account. It is needed to deploy the contract to the blockchain. 
+In the folder ***files*** we have the file ***seed.csv*** which contains the 12 words of your Ethereum account. It is needed to deploy the contract to the blockchain. 
+
+In the root folder we have the file ***.env*** which contains the property ***API_KEY*** with the URL to the API service to deploy the contract to the Ethereum network. I have used the Infura API key to deploy to the  Sepolia network. 
 
 ## Project Set Up
 1. After having cloned the repository to our local machine we have to run `npm install` to download alla the dependencies.
