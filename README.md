@@ -1,6 +1,8 @@
 # ethereum-simple-contract
 This branch aims at compile, test and deploy a solidity contract on the Ethereum test network Sepolia.
 
+The code is discussed in this [Youtube video](https://www.youtube.com/watch?v=LRIX2uC-_dk&t=3s)
+
 ## Project Structure
 
 The folder ***contracts*** contains our contract ***Inbox.sol***.
