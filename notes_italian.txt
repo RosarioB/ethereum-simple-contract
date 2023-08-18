@@ -1,0 +1,186 @@
+Guida su come compilare il codice Solidity https://www.alchemy.com/overviews/solidity-compiler
+
+*********************** NVM-WINDOWS *************************
+https://github.com/coreybutler/nvm-windows
+
+Serve per passare da una versione di Node.js all'altra
+
+1 Installa nvm-windows da nvm-setup.exe 
+
+2  nvm install latest --> installa l'ultima versione di node.js
+
+	C:\Users\borge\AppData\Roaming\nvm questa è la directory dove nvm salverà le versioni di Node.js
+	
+3 aggiungi C:\Users\borge\AppData\Roaming\nvm\v20.2.0 al PATH
+
+ 	npm -version --> dovrebbe funzionare
+	
+
+********************* Comandi NVM ************************
+nvm serve per cmabiare la versione di node
+
+nvm install 18.16.1 --> installerà la versione relativa di node
+
+nvm use 18.16.1 --> userà la relativa versione di node	
+
+nvm list --> la lista delle versioni di node installate
+
+
+*********************** SOLC *****************************
+https://github.com/ethereum/solc-js
+
+Compilatore Solidity
+
+Non consigliato installarlo così perché non riesci a cambiare la versione, meglio usare SOLC-SELECT
+
+npm install -g solc --> installerà solc.js l'ultima versione globalmente
+
+npm install g solc@0.4.17 --> installa la versione 0.4.17
+
+Set-ExecutionPolicy RemoteSigned  --> lanciare questo comando su Powershell per abilitare l'esecuzione degli scipt su Powershell
+
+solcjs --help
+
+
+******************** SOLC-SELECT **************************
+https://github.com/crytic/solc-select
+
+SOLC-SELECT ci permette di passare di cambiare la versione di SOLC.
+
+Con SOLC non riesco infatti a cambiare la versione.
+
+
+Per installare una specifica versione di solc usiamo: 
+	solc-select install 0.4.17
+	
+Per selezionare una versione di solc usiamo:
+	solc-select use 0.4.17
+	
+Per vedere la versione di solc usiamo
+	solc --version
+	
+******************* Progetto Solidity Inbox da zero **************************
+Struttura progetto:
+
+	- inbox
+		- contracts
+			- Inbox.sol
+		- test
+			- Inbox.test.js
+		- package.json
+		- compile.js
+		- deploy.js
+
+Bisogna creare le cartelle test e contracts all'interno della cartella inbox.
+
+1 all'interno di inbox lancio:
+
+	npm init --> dai sempre ok e alla fine yes. Inserisce queste informazioni nel file package.json
+
+	npm init -y --> automaticamente dà l'ok a tutto
+
+2 all'interno di contracts inserisci Inbox.sol
+
+3 all'interno di inbox inserisco il compile.js
+
+4 Per compilare il contratto dalla cartella inbox eseguo:
+	 
+	 node compile.js 
+
+	 nota: è possbile compilare anche più contratti contemporaneamente
+	 
+5 Ci spostiamo all'interno del progetto inbox e installiamo le librerie mocha, ganache e web3:
+
+	npm install mocha ganache web3	
+	
+	Nota: la libreria ganache-cli non è più supportata
+
+6 Per eseguire i test, quindi Mocha, dobbiamo aggiungere uno script al file package.json.
+
+	"scripts": {
+		"test": "mocha"
+	},
+
+	inoltre per lanciare i test, dalla cartella inbox bisogna eseguire:
+
+		npm run test
+		
+	Infatti npm run test singifica esegui lo scirpt test che è stato definito nel package.json
+		
+7 Invece per compilare il codice Typescript e poi eseguire i test nella shell gitbash possiamo eseguire:
+
+	tsc && npm run test oppure solo npm run test perchè lo script nel package.json è stato configurato
+  
+******* Come deployare il contratto su Sepolia ********
+
+Per eseguire lo script di deploy su Sepolia va eseguito: tsc && node dist/deploy.js, oppure npm run deploy perchè lo script nel package.json è stato configurato.
+
+
+  
+
+
+******************* Aggiungere la dipendenze di Typescript e solc nella sezione devDependencies del package.json (sviluppo)*******************
+
+Abbiamo visto come installare globalmente solc. Adesso però vogliamo inserire questa dipendenza nel package.json perché
+non possiamo dare per scontato che un altro sviluppatore abbia installato solc e TypeScript globalmente nel suo computer.
+
+Con npm i -D oppure npm i --save-dev installiamo la dipendenza nella sezione devDependencies del package.json.
+Questo permette agli altri sviluppatori di installare queste dipendenze con npm install.
+
+Infatti con npm install installiamo sia le devDependencies (sviluppo) che le dependencies (produzione) del package.json
+
+npm i -D typescript  ---> per aggiungere la dipendenza di Typescript nel package.json
+npm i -D solc@0.4.17 ---> per aggiungere la dipendenza di Solc versione 0.4.17 nel package.json
+
+******************* Aggiungere le dipendenze mocha ganache e web3 nella sezione dependencies del package.json (Produzione) ***********
+npm install mocha ganache web3	--> mocha è una libreria di test, ganache crea una rete Ethereum in locale per i test, web3 è la libreria di base per interagire con Ethereum
+
+Con npm install installiamo sia le devDependencies (sviluppo) che le dependencies (produzione) del package.json
+
+npm install @truffle/hdwallet-provider --> installa il provider per interagire con la rete Ethereum (Sepolia)
+
+npm install csv-parse --> serve per leggere i file csv. Infatti abbiamo bisogno di leggere la seed phrase per usare truffle/hdwallet-provider
+
+npm install properties-reader --> serve per leggere le proprietà da un file es application.properties
+npm i  @types/properties-reader --> per installare i file di dichiarazione per Typescript altrimenti la libreria properties-reader non si può usare in Typescript.
+
+
+******************* Aggiungere i File Declaration per lavorare con Typescript*************************
+
+A differenza di ganache e web3 che hanno già i file declaration (.d.ts) per Typescript, per Mocha dobbiamo importarli così:
+
+npm i -D  @types/mocha 
+
+Invece per solc non esistono file declaration, quindi per poter usare soloc bisogna creare un file solc.d.ts e all'interno scrivere:
+
+declare module "solc"
+	
+******************* Progetto Solidity Inbox Completo scaricato dal corso **************************
+
+Nella cartella del progetto eseguiamo:
+
+	npm install 
+
+per scaricare le dipendenze.
+
+Di default npm installa scarica  sia le devDependencies (sviluppo) che le dependencies (produzione) riportate nel file package.json.
+
+
+******************Come funziona npm run *****************************
+npm run esegue quello che abbiamo definito nella sezione script del package.json:
+
+In questo caso abbiamo definito:
+
+  "scripts": {
+    "test": "tsc && mocha dist/test/**/*.js",
+    "tsc": "tsc"
+  },
+  
+  
+  Questo significa che eseguendo:
+  npm run test: eseguiremo lo script corrispondente, quindi: tsc && mocha dist/test/**/*.js
+  npm run tsc: eseguiremo tsc
+  
+  
+  
+	
