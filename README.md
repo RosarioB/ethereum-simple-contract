@@ -3,5 +3,5 @@ This is a repository which aims to compile, test and deploy Solidity contract on
 
 The branch ***simple_contract*** contains the code.
 
-## Code Source
+### Code Source
 The code is adapted from the course [Ethereum and Solidity: The Complete Developer's Guide](https://www.udemy.com/course/ethereum-and-solidity-the-complete-developers-guide/?couponCode=24T6MT62024) by Stephen Grider, with some modifications.
