@@ -13,7 +13,7 @@ In the folder ***src*** we can find:
 * the file ***deploy.ts*** which is used to deploy the contract on the Ethereum blockchain.
 * the file ***seed.ts*** which is used to read the seed phrase from the file seed.csv.
 
-In the folder ***files*** we have the file ***seed.csv*** which contains the 12 words of your Ethereum account. It is needed to deploy the contract to the blockchain. 
+In the folder ***files*** there is a dummy file ***seed.csv***.You need to replace this file with the 12-word mnemonic of your Metamask account.
 
 In the root folder we have the file ***.env*** which contains the property ***API_KEY*** with the URL to the API service to deploy the contract to the Ethereum network. I have used the Infura API key to deploy to the  Sepolia network. 
 
@@ -39,8 +39,3 @@ To verify the correct deployment of the contract to the Sepolia network after yo
 ## Warning
 Be careful with your seed phrase: if you have some real Ether on your Ethereum account on the main Ethereum network and someone gets the seed phrase you can lose your money. I suggest you to use a different Ethereum account only to work with the Sepolia network.
 To get the Ether on the Sepolia network you can use a faucet like [this](https://sepolia-faucet.pk910.de/#/).
-
-## Code Source
-This code is adapted from the course [Ethereum and Solidity: The Complete Developer's Guide](https://www.udemy.com/course/ethereum-and-solidity-the-complete-developers-guide/?couponCode=24T6MT62024) by Stephen Grider, with some modifications.
-
-
